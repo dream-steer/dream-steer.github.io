@@ -32,7 +32,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/dreamsteer_icon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -301,6 +301,184 @@
       </div>
     </div>
     <!--/ Paper video. -->
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <figure class="overview-figure">
+          <h2 class="title is-3 has-text-centered">DreamSteer framework</h2>
+          <img src="./static/images/dreamsteer_overview.png" alt="DreamSteer overview figure">
+          <figcaption class="overview-caption">
+            <strong>DreamSteer: test-time policy steering.</strong>
+            Given a language instruction and current observation, a pretrained generalist policy
+            generates multiple candidate action sequences, which are augmented with a small set of
+            predefined action primitives. An action-conditioned world model predicts the outcomes of
+            each candidate through imagined rollouts, which are evaluated by a
+            language-conditioned value model. The highest-scoring action is then selected and
+            executed in the real environment.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Real robot experiments</h2>
+        <h3 class="title is-4 has-text-centered">Out-of-distribution (OOD) results</h3>
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-phone">phone</span> and place it in the brown box</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/phone_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/phone_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-mustard">mustard</span> and place it in the brown box</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/mustard_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/mustard_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-whiteboard">whiteboard eraser</span> and place it in the black bowl</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/whiteboard_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/whiteboard_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-bluetape">blue tape</span> and place it in the black bowl</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/bluetape_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/OOD_single/bluetape_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="title is-4 has-text-centered comparison-section-title">Instruction following (IF) accuracy</h3>
+        <div class="comparison-grid">
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-banana">banana</span> and place it in the black bowl</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/banana_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/banana_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-sponge">sponge</span> and place it in the black bowl</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/sponge_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/sponge_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-apple">apple</span> and place it in the brown box</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/apple_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/apple_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="comparison-card">
+            <h4 class="comparison-title">Pick up the <span class="object-pencilcase">pencil case</span> and place it in the brown box</h4>
+            <div class="comparison-videos">
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/pencilcase_ds.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub> + DreamSteer</div>
+              </div>
+              <div class="comparison-video-item">
+                <video autoplay controls muted loop playsinline preload="metadata">
+                  <source src="./static/IF_single/pencilcase_pi0.mp4" type="video/mp4">
+                </video>
+                <div class="comparison-label">π<sub>0</sub></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
