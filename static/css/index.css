@@ -104,6 +104,10 @@ body {
   display: inline-block;
 }
 
+.publication-authors .author-block + .author-block {
+  margin-left: 1.2rem;
+}
+
 .publication-banner img {
 }
 
