@@ -1,5 +1,7 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
 }
 
 .container.is-max-widescreen {
@@ -10,6 +12,11 @@ body {
 .footer .icon-link {
     font-size: 25px;
     color: #000;
+}
+
+.footer .content {
+  font-size: 1.02rem;
+  line-height: 1.7;
 }
 
 .link-block a {
@@ -34,7 +41,7 @@ body {
 .teaser-caption {
   max-width: 980px;
   margin: 1rem auto 0;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.55;
 }
 
@@ -60,10 +67,14 @@ body {
 
 .publication-title {
     font-family: 'Google Sans', sans-serif;
+    font-size: 3.35rem;
+    line-height: 1.12;
 }
 
 .publication-authors {
     font-family: 'Google Sans', sans-serif;
+    font-size: 1.16rem;
+    line-height: 1.5;
 }
 
 .publication-venue {
@@ -131,7 +142,7 @@ body {
 .overview-caption {
   max-width: 100%;
   margin: 1rem auto 0;
-  font-size: 0.98rem;
+  font-size: 1.05rem;
   line-height: 1.6;
   text-align: left;
 }
@@ -166,7 +177,7 @@ body {
   grid-column: 1 / -1;
   margin-bottom: 0.25rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
 }
@@ -176,7 +187,7 @@ body {
   margin-top: 0.75rem;
   margin-bottom: -0.25rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.48rem;
   font-weight: 700;
   text-align: center;
 }
@@ -199,7 +210,7 @@ body {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 0.45rem 0.75rem 0.6rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #444;
   text-align: center;
@@ -232,7 +243,7 @@ body {
 .comparison-title {
   margin-bottom: 0.2rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 1.08rem;
   line-height: 1.35;
   min-height: 2.5em;
   font-weight: 700;
@@ -301,7 +312,7 @@ body {
 .comparison-label {
   padding: 0.45rem 0.5rem 0.6rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.98rem;
   font-weight: 600;
   text-align: center;
 }
@@ -321,7 +332,7 @@ body {
 .results-table-title {
   margin-bottom: 0.9rem;
   font-family: 'Google Sans', sans-serif;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   text-align: center;
 }
@@ -334,9 +345,17 @@ body {
   width: 100%;
   border-collapse: collapse;
   font-family: "Times New Roman", Times, serif;
-  font-size: 0.98rem;
+  font-size: 1.08rem;
   border-top: 3px solid #111;
   border-bottom: 3px solid #111;
+}
+
+.content p {
+  font-size: 1.05rem;
+}
+
+.button.is-normal {
+  font-size: 1rem;
 }
 
 .results-table th,
