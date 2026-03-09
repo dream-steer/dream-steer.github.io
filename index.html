@@ -190,14 +190,11 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+      <img id="teaser" src="./static/images/HWM.png" alt="DREAMSTEER teaser figure">
+      <h2 class="subtitle has-text-centered teaser-caption">
+        <strong>Heterogeneous latent action-conditioned world model.</strong> Our world model learns from diverse embodiments, maps visual and
+        proprioceptive inputs into a shared latent space, and appends context tokens to capture
+        recent interaction history.
       </h2>
     </div>
   </div>
@@ -206,55 +203,64 @@
 
 <section class="hero is-light is-small">
   <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
+    <div class="container is-max-desktop">
+      <div class="video-grid">
+        <div class="video-grid-title">Unseen episode</div>
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/washbottle.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/washpan.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/movearm.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
+        <div class="video-grid-title">Dexterous hands manipulation</div>
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/dexhand1.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/dexhand2.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/dexhand3.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
+        <div class="video-grid-title">Unseen environment</div>
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/pickcup.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/pushblock.mp4" type="video/mp4">
           </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
+        </div>
+        <div class="video-grid-item">
+          <video autoplay controls muted loop playsinline preload="metadata">
+            <source src="./static/dreamsteer_video/foldcloth.mp4" type="video/mp4">
+          </video>
+          <div class="video-grid-labels"><span>Real</span><span>Imagined</span></div>
         </div>
       </div>
     </div>
@@ -270,31 +276,34 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            Pretrained generalist policies, such as vision-language-action (VLA) models, promise
+            impressive zero-shot generalization in robot manipulation. However, their real-world
+            performance tapers quickly under distribution shift, leading to decreased robustness and
+            inconsistent instruction following abilities.
           </p>
           <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
+            To address these challenges, we propose <strong>DreamSteer</strong>, a deploy-time
+            steering framework to enhance pretrained VLAs without the need for finetuning on
+            demonstration data collected in the target distribution. The key insight in
+            DreamSteer is to leverage a <em>latent world model</em> and a
+            <em>general-purpose value function</em> to <em>steer</em> pretrained VLA policies.
+            During deployment, DreamSteer generates diverse action candidates,
+            sourced from the VLA policy and a set of predefined motion primitives, and
+            <em>imagines</em> the outcome of each action sequence by rolling it out within the
+            latent world model.
           </p>
           <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            By evaluating these predicted trajectories with the <em>value model</em>,
+            DreamSteer identifies and executes the highest-scoring action,
+            resulting in better instruction following and filtering out task-irrelevant behaviors.
+            Across four real-world manipulation benchmarks of unseen objects, DreamSteer improves
+            task success rates by <strong>42.5 percentage points</strong>, from
+            <strong>23.75%</strong> to <strong>66.25%</strong>, and increases instruction following
+            accuracy by <strong>17.5 percentage points</strong>, from <strong>38.75%</strong> to
+            <strong>56.25%</strong>, compared to the base VLA. These results suggest that latent
+            world models can steer VLA policies during deployment and provide an effective pathway
+            for improving the reliability of generalist robot policies when finetuning may not be
+            desired or feasible.
           </p>
         </div>
       </div>
@@ -318,110 +327,6 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
     <!-- Concurrent Work. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
