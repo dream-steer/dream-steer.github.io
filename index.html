@@ -68,7 +68,7 @@
     <div class="container is-max-widescreen">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">DREAMSTEER: Latent World Models Can Steer VLA Policies During Deployment</h1>
+          <h1 class="title is-1 publication-title"><span class="publication-title-gradient">DREAMSTEER</span>: Latent World Models Can Steer VLA Policies During Deployment</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://morning-star-7.github.io/">Hanchen Cui</a><sup>1,2,*</sup>,</span>
@@ -100,9 +100,11 @@
           </div>
           <div class="is-size-6 publication-authors">
             <span class="author-block"><sup>*</sup>Work done during an internship at Meta</span>
-          </div>
-          <div class="is-size-6 publication-authors">
             <span class="author-block"><sup>&dagger;</sup>Joint last authors</span>
+          </div>
+          <div class="publication-logos" aria-label="Institution logos">
+            <img src="./static/images/Meta-Logo.png" alt="Meta logo" class="publication-logo publication-logo-meta">
+            <img src="./static/images/University-of-Minnesota-Logo.png" alt="University of Minnesota logo" class="publication-logo publication-logo-umn">
           </div>
 
           <div class="column has-text-centered">
@@ -171,12 +173,14 @@
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <h2 class="title is-3 has-text-centered">Latent world model overview</h2>
-      <img id="teaser" src="./static/images/HWM.png" alt="DREAMSTEER teaser figure">
-      <h2 class="subtitle has-text-centered teaser-caption">
-        <strong>Heterogeneous latent action-conditioned world model.</strong> Our world model learns from diverse embodiments, maps visual and
-        proprioceptive inputs into a shared latent space, and appends context tokens to capture
-        recent interaction history.
-      </h2>
+      <figure class="teaser-figure">
+        <img id="teaser" src="./static/images/HWM.png" alt="DREAMSTEER teaser figure">
+        <figcaption class="teaser-caption overview-caption">
+          <strong>Heterogeneous latent action-conditioned world model.</strong> Our world model learns from diverse embodiments, maps visual and
+          proprioceptive inputs into a shared latent space, and appends context tokens to capture
+          recent interaction history.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -185,15 +189,17 @@
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <h2 class="title is-3 has-text-centered">Model architecture</h2>
-      <img src="./static/images/WM_structure_flat.png" alt="Model architecture figure">
-      <h2 class="subtitle has-text-centered teaser-caption">
-        <strong>Architecture of the Spatio-Temporal Transformer Block.</strong> The model
-        processes RGB and Control Latents through <em>N</em> repeated layers as shown on the
-        left, utilizing factorized spatio-temporal self-attention for efficiency. The
-        Spatio-Temporal Cross-Attention mechanism on the right integrates control signals by
-        performing independent spatial cross-attention per timestep and causal temporal
-        cross-attention per patch.
-      </h2>
+      <figure class="teaser-figure">
+        <img src="./static/images/WM_structure_flat.png" alt="Model architecture figure">
+        <figcaption class="teaser-caption overview-caption">
+          <strong>Architecture of the Spatio-Temporal Transformer Block.</strong> The model
+          processes RGB and Control Latents through <em>N</em> repeated layers as shown on the
+          left, utilizing factorized spatio-temporal self-attention for efficiency. The
+          Spatio-Temporal Cross-Attention mechanism on the right integrates control signals by
+          performing independent spatial cross-attention per timestep and causal temporal
+          cross-attention per patch.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -273,7 +279,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
+        <div class="content has-text-justified abstract-content">
           <p>
             Pretrained generalist policies, such as vision-language-action (VLA) models, promise
             impressive zero-shot generalization in robot manipulation. However, their real-world
