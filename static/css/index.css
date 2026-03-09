@@ -158,6 +158,15 @@ body {
   gap: 1rem;
 }
 
+.video-grid-main-title {
+  grid-column: 1 / -1;
+  margin-bottom: 0.25rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .video-grid-title {
   grid-column: 1 / -1;
   margin-top: 0.75rem;
