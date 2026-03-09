@@ -479,6 +479,105 @@
             </div>
           </div>
         </div>
+
+        <h4 class="title is-5 has-text-centered comparison-section-title">Quantitative results</h4>
+        <div class="results-table-grid">
+          <div class="results-table-card">
+            <h5 class="results-table-title">Out-of-distribution objects success rate ↑</h5>
+            <div class="results-table-wrapper">
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th>Policy</th>
+                    <th>Phone</th>
+                    <th>Mustard</th>
+                    <th>Tape</th>
+                    <th>Eraser</th>
+                    <th>Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>π<sub>0</sub>(k=1)</td>
+                    <td>4/20</td>
+                    <td>3/20</td>
+                    <td>6/20</td>
+                    <td>6/20</td>
+                    <td>23.75%</td>
+                  </tr>
+                  <tr>
+                    <td>π<sub>0</sub>(k=5)+DreamSteer</td>
+                    <td>7/20</td>
+                    <td>6/20</td>
+                    <td>11/20</td>
+                    <td>10/20</td>
+                    <td>42.5%</td>
+                  </tr>
+                  <tr>
+                    <td>π<sub>0</sub>(k=5+prim)+random</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0%</td>
+                  </tr>
+                  <tr>
+                    <td>prim+DreamSteer</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0/20</td>
+                    <td>0%</td>
+                  </tr>
+                  <tr class="results-table-divider results-table-highlight">
+                    <td>π<sub>0</sub>(k=5+prim)+DreamSteer</td>
+                    <td>12/20</td>
+                    <td>11/20</td>
+                    <td>16/20</td>
+                    <td>14/20</td>
+                    <td>66.25%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="results-table-card">
+            <h5 class="results-table-title">Instruction following accuracy ↑</h5>
+            <div class="results-table-wrapper">
+              <table class="results-table">
+                <thead>
+                  <tr>
+                    <th>Policy</th>
+                    <th>Sponge</th>
+                    <th>Banana</th>
+                    <th>Pencil case</th>
+                    <th>Apple</th>
+                    <th>Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>π<sub>0</sub>(k=1)</td>
+                    <td>8/20</td>
+                    <td>9/20</td>
+                    <td>6/20</td>
+                    <td>8/20</td>
+                    <td>38.75%</td>
+                  </tr>
+                  <tr class="results-table-divider results-table-highlight">
+                    <td>π<sub>0</sub>(k=5+prim)+DreamSteer</td>
+                    <td>14/20</td>
+                    <td>13/20</td>
+                    <td>9/20</td>
+                    <td>9/20</td>
+                    <td>56.25%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

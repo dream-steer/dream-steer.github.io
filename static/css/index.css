@@ -302,6 +302,70 @@ body {
   text-align: center;
 }
 
+.results-table-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.results-table-card {
+  padding: 0.25rem 0;
+  background: transparent;
+}
+
+.results-table-title {
+  margin-bottom: 0.9rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.results-table-wrapper {
+  overflow-x: auto;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.98rem;
+  border-top: 3px solid #111;
+  border-bottom: 3px solid #111;
+}
+
+.results-table th,
+.results-table td {
+  padding: 0.45rem 0.8rem;
+  text-align: center;
+  border-bottom: none;
+}
+
+.results-table th:first-child,
+.results-table td:first-child {
+  text-align: left;
+}
+
+.results-table thead th {
+  font-weight: 700;
+  font-size: 1.02rem;
+  border-bottom: 2px solid #111;
+}
+
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.results-table-divider td {
+  border-top: 2px solid #111;
+  padding-top: 0.7rem;
+}
+
+.results-table-highlight td {
+  font-weight: 700;
+}
+
 @media screen and (max-width: 768px) {
   .video-grid {
     grid-template-columns: 1fr;
@@ -310,6 +374,7 @@ body {
   .comparison-grid {
     grid-template-columns: 1fr;
   }
+
 }
 
 
