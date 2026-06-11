@@ -172,8 +172,8 @@
       <figure class="teaser-figure">
         <img id="teaser" src="./static/images/HWM.png" alt="DREAMSTEER teaser figure">
         <figcaption class="teaser-caption overview-caption">
-          <strong>Heterogeneous latent action-conditioned world model.</strong> Our world model learns from diverse embodiments, maps visual and
-          proprioceptive inputs into a shared latent space, and appends context tokens to capture
+          <strong>Heterogeneous latent action-conditioned world model.</strong> Our world model learns from diverse embodiments, maps visual,
+          proprioceptive inputs, and action into a shared latent space, and appends context tokens to capture
           recent interaction history.
         </figcaption>
       </figure>
@@ -277,34 +277,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified abstract-content">
           <p>
-            Pretrained generalist policies, such as vision-language-action (VLA) models, promise
-            impressive zero-shot generalization in robot manipulation. However, their real-world
-            performance tapers quickly under distribution shift, leading to decreased robustness and
-            inconsistent instruction following abilities.
-          </p>
-          <p>
-            To address these challenges, we propose <strong>DreamSteer</strong>, a deploy-time
-            steering framework to enhance pretrained VLAs without the need for finetuning on
-            demonstration data collected in the target distribution. The key insight in
-            DreamSteer is to leverage a <em>latent world model</em> and a
-            <em>general-purpose value function</em> to <em>steer</em> pretrained VLA policies.
-            During deployment, DreamSteer generates diverse action candidates,
-            sourced from the VLA policy and a set of predefined motion primitives, and
-            <em>imagines</em> the outcome of each action sequence by rolling it out within the
-            latent world model.
-          </p>
-          <p>
-            By evaluating these predicted trajectories with the <em>value model</em>,
-            DreamSteer identifies and executes the highest-scoring action,
-            resulting in better instruction following and filtering out task-irrelevant behaviors.
-            Across four real-world manipulation benchmarks of unseen objects, DreamSteer improves
-            task success rates by <strong>42.5 percentage points</strong>, from
-            <strong>23.75%</strong> to <strong>66.25%</strong>, and increases instruction following
-            accuracy by <strong>17.5 percentage points</strong>, from <strong>38.75%</strong> to
-            <strong>56.25%</strong>, compared to the base VLA. These results suggest that latent
-            world models can steer VLA policies during deployment and provide an effective pathway
-            for improving the reliability of generalist robot policies when finetuning may not be
-            desired or feasible.
+            Pretrained vision-language-action (VLA) policies show promising zero-shot generalization,
+            but often fail under deployment-time distribution shift, leading to decreased robustness
+            and inconsistent instruction following. While prior work commonly tackles this by
+            finetuning on in-distribution data, it assumes demonstrations collected on tasks in the
+            target environment. In this work, we propose <strong>DreamSteer</strong>, a
+            deployment-time steering framework for pretrained VLAs <strong>without any finetuning or
+            parameter modifications</strong>. The key insight in DreamSteer is to leverage a
+            <em>latent world model</em> and a <em>value model</em> to <em>steer</em> pretrained VLA
+            policies. During deployment, DreamSteer samples candidate action chunks from a VLA
+            policy and predefined motion primitives, imagines their outcomes using an
+            action-conditioned latent world model, and ranks the imagined trajectories with a
+            language-conditioned value model. Across four real-world manipulation benchmarks with
+            unseen objects, DreamSteer improves task success rate from <strong>23.75%</strong> to
+            <strong>66.25%</strong> and instruction-following accuracy from
+            <strong>38.75%</strong> to <strong>56.25%</strong> over the base VLA policy.
           </p>
         </div>
       </div>
@@ -329,13 +316,12 @@
           <h2 class="title is-3 has-text-centered">DreamSteer framework</h2>
           <img src="./static/images/dreamsteer_overview.png" alt="DreamSteer overview figure">
           <figcaption class="overview-caption">
-            <strong>DreamSteer: test-time policy steering.</strong>
-            Given a language instruction and current observation, a pretrained generalist policy
-            generates multiple candidate action sequences, which are augmented with a small set of
-            predefined action primitives. An action-conditioned world model predicts the outcomes of
-            each candidate through imagined rollouts, which are evaluated by a
-            language-conditioned value model. The highest-scoring action is then selected and
-            executed in the real environment.
+            <strong>DreamSteer: deployment-time policy steering.</strong>
+            A frozen VLA policy proposes candidate action chunks, which are augmented with a small
+            set of predefined Cartesian action primitives. A latent world model predicts future
+            observations, and a language-conditioned value model ranks the resulting trajectories
+            before execution. <strong>All models are trained frozen, and no target-environment data
+            is used during model training</strong>.
           </figcaption>
         </figure>
       </div>
@@ -502,59 +488,69 @@
         <h4 class="title is-5 has-text-centered comparison-section-title">Quantitative results</h4>
         <div class="results-table-grid">
           <div class="results-table-card">
-            <h5 class="results-table-title">Out-of-distribution objects success rate ↑</h5>
             <div class="results-table-wrapper">
               <table class="results-table">
+                <caption class="results-table-caption">
+                  <strong>OOD object performance ↑.</strong>
+                  Success rates over 20 trials per object. The last column reports the aggregate
+                  success rate over all 80 trials with 95% Wilson confidence intervals.
+                </caption>
                 <thead>
                   <tr>
-                    <th>Policy</th>
+                    <th>Method</th>
                     <th>Phone</th>
                     <th>Mustard</th>
                     <th>Tape</th>
                     <th>Eraser</th>
                     <th>Average</th>
+                    <th>95% CI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>π<sub>0</sub>(k=1)</td>
+                    <td>π<sub>0</sub></td>
                     <td>4/20</td>
                     <td>3/20</td>
                     <td>6/20</td>
                     <td>6/20</td>
-                    <td>23.75%</td>
+                    <td>23.75</td>
+                    <td>[15.84, 34.07]</td>
                   </tr>
                   <tr>
-                    <td>π<sub>0</sub>(k=5)+DreamSteer</td>
+                    <td>π<sub>0</sub> + DreamSteer</td>
                     <td>7/20</td>
                     <td>6/20</td>
                     <td>11/20</td>
                     <td>10/20</td>
-                    <td>42.5%</td>
+                    <td>42.50</td>
+                    <td>[32.26, 53.43]</td>
                   </tr>
                   <tr>
-                    <td>π<sub>0</sub>(k=5+prim)+random</td>
+                    <td>π<sub>0</sub> + primitives + random</td>
                     <td>0/20</td>
                     <td>0/20</td>
                     <td>0/20</td>
                     <td>0/20</td>
-                    <td>0%</td>
+                    <td>0.00</td>
+                    <td>[0.00, 4.58]</td>
                   </tr>
                   <tr>
-                    <td>prim+DreamSteer</td>
+                    <td>primitives + DreamSteer</td>
                     <td>0/20</td>
                     <td>0/20</td>
                     <td>0/20</td>
                     <td>0/20</td>
-                    <td>0%</td>
+                    <td>0.00</td>
+                    <td>[0.00, 4.58]</td>
                   </tr>
                   <tr class="results-table-divider results-table-highlight">
-                    <td>π<sub>0</sub>(k=5+prim)+DreamSteer</td>
+                    <td>π<sub>0</sub> + primitives + DreamSteer</td>
                     <td>12/20</td>
                     <td>11/20</td>
                     <td>16/20</td>
                     <td>14/20</td>
-                    <td>66.25%</td>
+                    <td>66.25</td>
+                    <td>[55.39, 75.65]</td>
                   </tr>
                 </tbody>
               </table>
@@ -562,35 +558,42 @@
           </div>
 
           <div class="results-table-card">
-            <h5 class="results-table-title">Instruction following accuracy ↑</h5>
             <div class="results-table-wrapper">
               <table class="results-table">
+                <caption class="results-table-caption">
+                  <strong>Instruction following performance ↑.</strong>
+                  Accuracy over 20 trials per target object. The last column reports the aggregate
+                  accuracy over all 80 trials with 95% Wilson confidence intervals.
+                </caption>
                 <thead>
                   <tr>
-                    <th>Policy</th>
+                    <th>Method</th>
                     <th>Sponge</th>
                     <th>Banana</th>
-                    <th>Pencil case</th>
+                    <th>Pencil</th>
                     <th>Apple</th>
                     <th>Average</th>
+                    <th>95% CI</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>π<sub>0</sub>(k=1)</td>
+                    <td>π<sub>0</sub></td>
                     <td>8/20</td>
                     <td>9/20</td>
                     <td>6/20</td>
                     <td>8/20</td>
-                    <td>38.75%</td>
+                    <td>38.75</td>
+                    <td>[28.78, 49.73]</td>
                   </tr>
                   <tr class="results-table-divider results-table-highlight">
-                    <td>π<sub>0</sub>(k=5+prim)+DreamSteer</td>
+                    <td>π<sub>0</sub> + primitives + DreamSteer</td>
                     <td>14/20</td>
                     <td>13/20</td>
                     <td>9/20</td>
                     <td>9/20</td>
-                    <td>56.25%</td>
+                    <td>56.25</td>
+                    <td>[45.34, 66.57]</td>
                   </tr>
                 </tbody>
               </table>
@@ -624,8 +627,6 @@
           <p>
             This project page is adapted from the
             <a href="https://github.com/nerfies/nerfies.github.io">Nerfies website template</a>.
-          </p>
-          <p>
             The website content has been customized for DreamSteer. Please refer to the original
             template repository for implementation details and attribution.
           </p>

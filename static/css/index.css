@@ -367,7 +367,7 @@ body {
 .results-table-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2.4rem;
   margin-top: 1rem;
 }
 
@@ -398,6 +398,15 @@ body {
   font-size: 1.08rem;
   border-top: 3px solid #111;
   border-bottom: 3px solid #111;
+}
+
+.results-table-caption {
+  caption-side: top;
+  margin-bottom: 0.75rem;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: left;
 }
 
 .content p {
