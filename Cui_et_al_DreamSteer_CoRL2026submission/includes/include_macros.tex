@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Krishna's macros for conf papers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Macros for reviewing paper, marking todos
+\newcommand{\todo}[1]{{\color{red} TODO: \textbf{#1}}}
+% \newcommand{\todo}[1]{}
+% For comments
+\newcommand{\krishna}[1]{{\color{red}{\textbf{Krishna}: #1}}}
+\newcommand{\liam}[1]{{\color{blue}{\textbf{Liam}: #1}}}
+\newcommand{\qiao}[1]{ {\color{cyan}{\textbf{Qiao}: #1}} }
+\newcommand{\shuang}[1]{{\color{green}{\textbf{shuang}: #1}}}
+
+% For highlighting paper edits
+\newcommand{\edit}[1]{{\color{red}{#1}}}
+
+% Color defined by Florian Golemo: https://fgolemo.github.io/
+% Good choice for references
+\definecolor{flodarkpurple}{rgb}{0.288,0.1196,0.7}
+
+\definecolor{ganeshamber}{rgb}{1.0, 0.75, 0.0}
+\newcommand{\ganesh}[1]{{\color{ganeshamber} \textbf{Ganesh}: \textbf{#1}}}
+
+
+
+% Shorthand for \mathbf
+\newcommand{\mb}[1]{\mathbf{#1}}
+% Shorthand for \mathcal
+\newcommand{\mc}[1]{\mathcal{#1}}
+% Short hand for delta * t (Defined by: Miles Macklin)
+\newcommand{\dt}{\Delta t}
+
+% % Common abbreviations
+\newcommand{\etal}{\emph{et al.}}
+\newcommand{\cf}{\emph{cf.}}
+
+
+% Cross mark (assumes package `pifont` is used)
+\newcommand{\xmark}{\ding{55}}%
+
+% % Table float box with bottom caption, box width adjusted to content
+% % (assumes package `floatrow` is used)
+% \newfloatcommand{capbtabbox}{table}[][\FBwidth]
+
+% % Text colors
+% \newcommand{\red}[1]{{\textcolor{red}{#1}}}
+% \newcommand{\blue}[1]{{\textcolor{blue}{#1}}}
+% \newcommand{\green}[1]{{\textcolor{green}{#1}}}
+% \newcommand{\gray}[1]{{\textcolor{gray}{#1}}}
+% \newcommand{\pink}[1]{{\textcolor{pink}{#1}}}
+
+% % % Credits: Derek Nowrouzezahrai
+% % \newenvironment{myitemize}{
+% % \begin{itemize}[leftmargin=*,noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt]
+% %   \setlength{\itemsep}{1pt}
+% %   \setlength{\parskip}{1pt}
+% %   \setlength{\parsep}{1pt}}{\end{itemize}
+% % }
+
+% % % Credits: Derek Nowrouzezahrai
+% % \newenvironment{myenumerate}{
+% % \begin{enumerate}[leftmargin=*,noitemsep,topsep=2pt,parsep=0pt,partopsep=0pt]
+% % %  \setlength{\parindent}{0pt}
+% %   \setlength{\itemsep}{1pt}
+% % %  \setlength{\itemindent}{6pt}
+% %   \setlength{\parskip}{1pt}
+% % %  \setlength{\parsep}{0pt}
+% % }{\end{enumerate}
+% % }

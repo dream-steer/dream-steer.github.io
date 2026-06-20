@@ -1,0 +1,135 @@
+\documentclass{article}
+
+
+
+
+
+\usepackage{corl_2026} % Use this for the initial submission.
+% \usepackage[final]{corl_2026} % Uncomment for the camera-ready ``final'' version.
+% \usepackage[preprint]{corl_2026} % Uncomment for pre-prints (e.g., arxiv); This is like ``final'', but will remove the CORL footnote.
+
+\input{includes/include_packages}
+\input{includes/include_macros}
+
+
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{makecell}
+\usepackage{float}
+\usepackage{graphicx} % preamble
+
+\usepackage{caption}
+\usepackage{enumitem}
+
+% \captionsetup{
+%     skip=2pt
+% }
+
+% \setlength{\textfloatsep}{6pt}
+% \setlength{\floatsep}{4pt}
+% \setlength{\intextsep}{6pt}
+
+\usepackage{titlesec}
+
+% Lists
+\setlist{
+    leftmargin=*,
+    noitemsep,
+    topsep=2pt
+}
+
+% Section spacing
+\titlespacing*{\section}{0pt}{1.0ex}{0.5ex}
+\titlespacing*{\subsection}{0pt}{0.8ex}{0.3ex}
+
+% Float spacing
+\captionsetup{
+    skip=2pt
+}
+
+\setlength{\textfloatsep}{6pt}
+\setlength{\floatsep}{4pt}
+\setlength{\intextsep}{6pt}
+
+
+\newcommand{\coolname}{\textsc{DreamSteer}}
+
+\title{\coolname: Latent World Models Can Steer VLA Policies During Deployment with Zero Finetuning}
+
+% The \author macro works with any number of authors. There are two
+% commands used to separate the names and addresses of multiple
+% authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to
+% break the lines. Using \AND forces a line break at that point. So,
+% if LaTeX puts 3 of 4 authors names on the first line, and the last
+% on the second line, try using \AND instead of \And before the third
+% author name.
+
+% NOTE: authors will be visible only in the camera-ready and preprint versions (i.e., when using the option 'final' or 'preprint'). 
+% 	For the initial submission the authors will be anonymized.
+
+\author{
+  Jane E.~Doe\\
+  Department of Electrical Engineering and Computer Sciences\\
+  University of California Berkeley 
+  United States\\
+  \texttt{janedoe@berkeley.edu} \\
+  %% examples of more authors
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \AND
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+  %% \And
+  %% Coauthor \\
+  %% Affiliation \\
+  %% Address \\
+  %% \texttt{email} \\
+}
+
+
+\begin{document}
+\maketitle
+
+
+\input{text/00-abstract}
+
+\input{text/01-introduction}
+
+\input{text/02-related-work}
+
+\input{text/03-approach}
+
+\input{text/04-experiments}
+
+\input{text/05-discussion}
+
+\input{text/06-conclusion}
+
+\clearpage
+% The acknowledgments are automatically included only in the final and preprint versions of the paper.
+\acknowledgments{If a paper is accepted, the final camera-ready version will (and probably should) include acknowledgments. All acknowledgments go at the end of the paper, including thanks to reviewers who gave useful comments, to colleagues who contributed to the ideas, and to funding agencies and corporate sponsors that provided financial support.}
+
+%===============================================================================
+
+% no \bibliographystyle is required, since the corl style is automatically used.
+\bibliography{example}  % .bib
+
+
+\clearpage
+\input{text/07-supplementary}
+
+\end{document}

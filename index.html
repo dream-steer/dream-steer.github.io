@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+        content="DreamSteer steers pretrained VLA policies during deployment with latent world models and language-conditioned value ranking.">
   <meta name="keywords" content="DREAMSTEER, Latent World Models, VLA Policies, Deployment">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DREAMSTEER: Latent World Models Can Steer VLA Policies During Deployment</title>
+  <title>DREAMSTEER: Latent World Models Can Steer VLA Policies During Deployment with Zero Finetuning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -52,19 +52,22 @@
   </div>
   <div class="navbar-menu">
     <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <!-- Home icon removed per request -->
+      <a class="navbar-item" href="#abstract">Abstract</a>
+      <a class="navbar-item" href="#method">Method</a>
+      <a class="navbar-item" href="#rollouts">Rollouts</a>
+      <a class="navbar-item" href="#experiments">Experiments</a>
     </div>
 
   </div>
 </nav>
 
 
-<section class="hero">
+<section class="hero publication-hero">
   <div class="hero-body">
     <div class="container is-max-widescreen">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"><span class="publication-title-gradient">DREAMSTEER</span>: Latent World Models Can Steer VLA Policies During Deployment</h1>
+          <h1 class="title is-1 publication-title"><span class="publication-title-gradient">DREAMSTEER</span>: Latent World Models Can Steer VLA Policies During Deployment with Zero Finetuning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://morning-star-7.github.io/">Hanchen Cui</a><sup>1,2,*</sup>,</span>
@@ -159,13 +162,50 @@
             </div>
 
           </div>
+
+          <div class="hero-highlights" aria-label="Key DreamSteer results">
+            <div class="hero-highlight">
+              <span class="hero-highlight-value">0</span>
+              <span class="hero-highlight-label">target-environment finetuning</span>
+            </div>
+            <div class="hero-highlight">
+              <span class="hero-highlight-value">+42.5%</span>
+              <span class="hero-highlight-label">OOD success improvement</span>
+            </div>
+            <div class="hero-highlight">
+              <span class="hero-highlight-value">+17.5%</span>
+              <span class="hero-highlight-label">instruction-following improvement</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero teaser">
+<section class="section contribution-section">
+  <div class="container is-max-widescreen">
+    <div class="contribution-grid">
+      <div class="contribution-card">
+        <div class="contribution-index">1</div>
+        <h3>Think before acting</h3>
+        <p>DreamSteer evaluates candidate VLA action chunks through imagined latent rollouts before real robot execution.</p>
+      </div>
+      <div class="contribution-card">
+        <div class="contribution-index">2</div>
+        <h3>Plug-and-play steering</h3>
+        <p>DreamSteer composes a frozen latent world model and value model at deployment time, without target-environment demonstrations or parameter updates.</p>
+      </div>
+      <div class="contribution-card">
+        <div class="contribution-index">3</div>
+        <h3>Handle deployment shift</h3>
+        <p>Real-robot experiments use unseen objects, distractors, and a different lab environment from training data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser" id="method">
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <h2 class="title is-3 has-text-centered">Latent world model overview</h2>
@@ -201,7 +241,7 @@
 </section>
 
 
-<section class="hero is-light is-small">
+<section class="hero is-light is-small rollout-section" id="rollouts">
   <div class="hero-body">
     <div class="container is-max-widescreen">
       <div class="video-grid">
@@ -269,7 +309,7 @@
 </section>
 
 
-<section class="section">
+<section class="section" id="abstract">
   <div class="container is-max-widescreen">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
@@ -330,7 +370,7 @@
 </section>
 
 
-<section class="section">
+<section class="section experiments-section" id="experiments">
   <div class="container is-max-widescreen">
     <div class="columns is-centered">
       <div class="column is-full-width">
@@ -604,19 +644,6 @@
     </div>
   </div>
 </section>
-
-
-<!-- <section class="section" id="BibTeX">
-  <div class="container is-max-widescreen content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
-  </div>
-</section> -->
 
 
 <footer class="footer">

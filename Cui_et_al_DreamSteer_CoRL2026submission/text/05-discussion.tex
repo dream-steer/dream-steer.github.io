@@ -1,0 +1,57 @@
+% \section{Discussion and Limitations}
+
+% \subsection{Why \coolname{} Works}
+
+% The empirical gains observed in our experiments come from the way \coolname{} decomposes test-time decision making. A pretrained VLA policy provides a distribution over plausible action chunks, but under distribution shift a single sample from this distribution may fail or regress. \coolname{} adds a steering mechanism around this policy: it samples multiple candidate chunks, predicts their outcomes with a world model, and uses a value model to rank the imagined rollouts before acting. This turns single-shot action generation into a test-time ranking problem over possible futures, without changing the underlying policy.
+
+% A useful way to understand this behavior is that the policy, world model, and value model play different roles, and are subject to different data constraints. A VLA policy needs to output executable robot actions, and is typically trained on successful robot demonstrations collected under a limited set of embodiments and environments. In contrast, a world model only needs to predict what happens next, and can in principle learn from broader interaction data, including successful demonstrations, failed attempts, random play, human videos, and cross-embodiment trajectories. The value model can be broader still, since image-based progress estimation can leverage visual-language pretraining and diverse human or robot data. \coolname{} uses this complementarity at deployment time: the policy proposes actions, the world model predicts their consequences, and the value model evaluates whether those consequences make progress toward the language instruction.
+
+% This complementarity helps in the regimes studied in Section~\ref{sec:Eval_\coolname{}}. In the OOD object experiments, the base $\pi_0$ policy often succeeds in some trials but fails in many others, indicating that useful trajectories exist within its action distribution but are not sampled reliably. \coolname{} addresses this gap by sampling and evaluating multiple candidates, allowing the system to recover action chunks that are already supported by the policy but would otherwise be missed during single-sample execution. The primitive actions further improve candidate coverage near common failure modes, such as when the end effector is close to the object but the sampled policy actions do not move into a grasp-ready pose.
+
+% The instruction-following results illustrate the same mechanism from a semantic perspective. In multi-object scenes with distractors, the base policy often produces plausible manipulation behaviors that are semantically wrong, such as reaching toward the wrong object. \coolname{} mitigates this failure mode by evaluating the predicted outcomes of candidate chunks under the language instruction. In this setting, the value model does not need to generate actions; it only needs to prefer the imagined rollout that better matches the instruction. This is often easier than requiring the policy to generate the correct action chunk in one pass.
+
+% \subsection{Limitations}
+% \label{sec:limitations}
+
+% In addition to the component-level failure modes analyzed in Section~\ref{sec:failure_analysis}, \coolname{} has several additional limitations. 
+
+% \paragraph{Action Candidate Coverage}
+% \coolname{} steers a generative policy by ranking a finite set of proposed action chunks. The candidate set contains stochastic samples from the pretrained policy and a small number of predefined action primitives. Although the primitives expand the set of behaviors considered at test time, \coolname{} does not synthesize new action chunks through policy optimization, search, or additional training. When neither the sampled policy chunks nor the primitive chunks contain an action that makes meaningful progress toward the instruction, steering cannot recover a successful behavior. Thus, \coolname{} improves test-time steering over available candidates, and its effectiveness depends on the diversity and expressiveness of the candidate set.
+
+% \paragraph{Latency}
+% Policy inference is fast, while world-model rollouts and value-model evaluation introduce additional overhead. For an action chunk of horizon $H{=}10$, averaged over 10 runs, policy inference takes 0.08\,s, world-model rollout takes 0.59\,s, and value-model evaluation takes 0.37\,s. Policy and value-model inference are performed on an NVIDIA RTX~4090 GPU, while the world model runs on an NVIDIA A6000 GPU. In practice, we apply steering once every five control steps, which amortizes planning cost over execution.
+% The current implementation prioritizes clarity and modularity over aggressive optimization. Both rollout and scoring can be optimized further, for example through parallel world-model rollouts, KV caching, FlashAttention, and more efficient latent-space trajectory scoring. These improvements are orthogonal to the method and would reduce the latency of deployment-time steering.
+
+
+
+
+% =========================tighten version ==========================
+\section{Discussion and Limitations}
+
+\subsection{Why \coolname{} Works}
+
+\paragraph{Trajectory Ranking Over One-pass Generation.}
+\coolname{} improves deployment-time robustness by converting single-sample action generation into a ranking problem over imagined futures. A pretrained VLA policy provides a distribution over plausible action chunks, but under distribution shift a single sample may fail or violate the language instruction. \coolname{} instead samples multiple candidate chunks, predicts their outcomes with a world model, ranks the imagined rollouts, and executes the highest-scoring action chunk. The performance improvements suggest that meaningful trajectories often exist in the policy distribution but are not reliably selected during single-sample execution. Selecting among candidate trajectories is easier than generating the correct trajectory in a single pass.
+
+
+\paragraph{Complementary Generalization Across Components.}
+Another way to understand \coolname{} is that the policy, world model, and value model are trained under different data regimes and therefore generalize differently. Generalization often depends on both the scale and diversity of training data. A VLA policy is typically trained on successful robot demonstrations collected from limited embodiments and environments. In contrast, a world model only needs to predict future observations and can leverage broader interaction data, including successful demonstrations, failures, random play, and cross-embodiment trajectories. The value model can generalize more broadly still, since image-based progress estimation can exploit large-scale visual-language pretraining together with diverse action-free human data. \coolname{} exploits this complementarity at deployment time: even when an object is out-of-distribution for the policy, it may remain in-distribution for the world model and value model, allowing successful steering.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+% \paragraph{Action Candidate Coverage.}
+% \coolname{} ranks a finite set of candidate action chunks sampled from the pretrained policy together with a small set of predefined primitives. While the primitives improve local exploration, \coolname{} does not synthesize new actions through optimization or search. As a result, steering cannot recover successful behavior when none of the proposed candidates make meaningful progress toward the instruction. A promising direction for future work is to integrate latent-space planning or trajectory optimization into \coolname{}, allowing candidate action chunks to be iteratively refined using world-model rollout feedback during deployment.
+
+
+
+\paragraph{Failure Mode Analysis.}
+\coolname{} can fail for two reasons. First, steering is limited by candidate coverage: when neither the sampled policy actions nor the predefined primitives make meaningful progress toward the instruction, the system cannot recover a successful behavior. Integrating latent-space planning or trajectory optimization could help iteratively refine candidate actions using world-model feedback. Second, steering relies on accurate trajectory ranking. We observe cases where the value model assigns higher scores to suboptimal candidates, often because different action outcomes appear visually similar from the single available camera view. In such cases, the value model cannot reliably distinguish between candidate trajectories, leading to incorrect steering decisions. Future work could improve ranking reliability through multi-view observations.
+
+
+
+
+
+\paragraph{Latency.}
+World-model rollout and value-model evaluation introduce additional inference overhead. For horizon $H{=}10$, policy inference takes 0.08\,s, world-model rollout takes 0.59\,s, and value-model evaluation takes 0.37\,s on an NVIDIA RTX~4090 GPU. The current implementation prioritizes feasibility over efficiency. Both rollout and scoring could be accelerated further through parallelized rollouts, KV caching, faster attention kernels, and other runtime enhancements.
+

@@ -1,0 +1,91 @@
+\providecommand{\cmark}{}
+\providecommand{\xmark}{}
+\renewcommand{\cmark}{\ding{51}}
+\renewcommand{\xmark}{\ding{55}}
+\definecolor{rowgray}{gray}{0.92}
+
+\section{Related Work}
+
+\textbf{Generalist policy.}
+Large-scale multimodal pretraining has enabled vision--language--action (VLA) models to emerge as generalist manipulation policies. Recent models such as $\pi_0$~\citep{black2410pi0}, GR00T~\citep{bjorck2025gr00t}, OpenVLA~\citep{kim2024openvla}, RT-2~\citep{zitkovich2023rt}, and FAST~\citep{pertsch2025fast}, trained on large-scale datasets including DROID~\citep{khazatsky2024droid}, exhibit a broad range of manipulation
+behaviors. Despite their broad capabilities, pretrained VLAs often remain brittle under deployment-time distribution shift~\citep{nakamoto2024steering,wu2025foresight,qi2025strengthening}, producing semantically incorrect behaviors or failing on unseen objects and environments. Instead of collecting new data and finetuning the policy, \coolname{} treats the pretrained VLA as a fixed generative action prior and steers sampled action chunks at deployment time.
+
+\textbf{Robotic World Models.}
+World models predict future states conditioned on observations and actions, enabling agents to evaluate action consequences before execution~\citep{agarwal2025cosmos,assran2025v,zhou2411dino}. In robotics, world models support planning, policy evaluation, and data generation, with approaches differing primarily in prediction space and action conditioning. Pixel-space models such as Cosmos~\citep{agarwal2025cosmos} and DreamGen~\citep{jang2025dreamgen} generate visually rich futures but remain computationally expensive for online steering. In contrast, latent models such as DINO-WM~\citep{zhou2411dino} and VT-WM~\cite{higuera2026visuo} directly predict future states in compact latent space conditioned on robot actions, making them better suited for inference-time action evaluation.
+\coolname{} uses an action-conditioned latent world model for efficient rollout and candidate evaluation. Candidate action chunks are rolled out in latent space, then decoded into image observations. This avoids expensive pixel-space video generation while preserving an image-based interface for evaluation.
+
+\textbf{Policy Steering and Model-Based Policy Refinement.}
+This class of methods improves pretrained policies using action proposals, predictive models, and external evaluators. Most policy steering approaches follow this decomposition: a policy proposes actions, a world model rolls out their consequences, and a value or reward model evaluates the result. 
+Prior methods make different choices within this design space. V-GPS~\citep{nakamoto2024steering} reranks single-step actions by a value model, without explicit rollout prediction. FOREWARN~\citep{wu2025foresight}, GPC~\citep{qi2025strengthening}, VLA-Reasoner~\citep{guo2025vla}, and LaDi-WM~\citep{huang2025ladi} rely on task-specific adaptation or policy refinement. In contrast, \coolname{} is a generalizable policy steering framework that performs fully deployment-time steering using a pretrained latent world model and a language-conditioned value model, without finetuning any component on target-task data. Table~\ref{tab:policy-steering-comparison} summarizes the main differences.
+
+\begin{table}[h]
+\caption{\textbf{Comparison to policy steering and model-based refinement methods.}
+ \emph{Training-free composition} means fully plug-and-play, each component does not rely on other components and any target-task data. ``--'' denotes not applicable.}
+\label{tab:policy-steering-comparison}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{0.92}
+
+\resizebox{0.80\columnwidth}{!}{
+\begin{tabular}{lccccc}
+
+
+
+
+\toprule
+\textbf{Method} &
+\makecell{\textbf{Action}\\\textbf{chunks}} &
+\makecell{\textbf{World model}\\\textbf{(space $|$ adaptation)}} &
+\makecell{\textbf{Generalized}\\\textbf{evaluator}} &
+\makecell{\textbf{Zero-shot}\\\textbf{steering}} &
+\makecell{\textbf{Training-free}\\\textbf{composition}} \\
+\midrule
+V-GPS~\citep{nakamoto2024steering}
+& \xmark
+& --
+& \cmark
+& \cmark
+& \xmark \\
+FOREWARN~\citep{wu2025foresight}
+& \cmark
+& Latent $|$ task-finetuned
+& \xmark
+& \xmark
+& \xmark \\
+GPC~\citep{qi2025strengthening}
+& \cmark
+& Pixel $|$ task-finetuned
+& \xmark
+& \xmark
+& \xmark \\
+VLA-Reasoner~\citep{guo2025vla}
+& \cmark
+& Pixel $|$ generalized
+& \xmark
+& \xmark
+& \xmark \\
+LaDi-WM~\citep{huang2025ladi}
+& \cmark
+& Latent $|$ task-finetuned
+& --
+& \xmark
+& \xmark \\
+\midrule
+\rowcolor{rowgray}
+\textbf{\coolname{} (ours)}
+& \cmark
+& Latent $|$ generalized
+& \cmark
+& \cmark
+& \cmark \\
+\bottomrule
+\end{tabular}
+}
+\vspace{-5pt}
+\end{table}
+
+
+
+
+

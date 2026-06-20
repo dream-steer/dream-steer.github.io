@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Krishna's default imports for conf papers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage[bookmarks=true]{hyperref}
+
+\usepackage{adjustbox}
+\usepackage[ruled, vlined]{algorithm2e}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}  % Used to specify \extracolsep for tables
+% \usepackage{authblk} % hanchen: comment out this to show authors correctly
+\usepackage{booktabs}
+\usepackage{capt-of}
+% \usepackage{cite}
+\usepackage[font=small,skip=2pt]{caption}
+\usepackage{subcaption}
+\usepackage{colortbl}
+% \usepackage{comment}
+% \usepackage{enumitem}
+% \usepackage{epsfig}
+% \usepackage{etoolbox}
+% \usepackage{fancyvrb} % for the fancy verbatim env (used for GPT-3 prompts etc)
+% \usepackage{float}
+% \usepackage{floatrow} % Various customization for latex floats (fig + table floats, and the like)
+% \usepackage[T1]{fontenc}
+% \usepackage{gensymb}
+
+% \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+\hypersetup{
+    pagebackref=true,
+    breaklinks=true,
+    colorlinks=true,
+    bookmarks=false
+}
+
+\usepackage{inconsolata}  % add on fonts(?) for listings/verbatim envs (used for GPT-3 prompts)
+\usepackage{graphicx}
+% \usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{makecell}
+% \usepackage{mathtools}
+% \usepackage{microtype}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[numbers]{natbib}
+% \usepackage{nicefrac}
+\usepackage{nowidow}  % tries to ensure that there's no "overhang" paragraphs with just 1-2 words on the last line
+\usepackage{paralist}
+\usepackage{pifont}
+% \usepackage{siunitx}  % For scientific number notation
+% \usepackage{subcaption}
+% \usepackage{svg}
+\usepackage{times}
+% \usepackage{tabu}  % Fancy table lines / colors etc.
+\usepackage{tabularx}
+% \usepackage{textcomp}
+\usepackage{thmtools}  % Theorem tools
+\usepackage{wrapfig}
+\usepackage{xcolor}
+\usepackage{svg}
+
+
+% % Setup "siunitx"
+% \sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
+
+
+% % Not including hyperref, as it does not play well with vision conference (CVPR/ICCV/WACV/3DV) styles.
+% % If you comment hyperref and then uncomment it, you should delete
+% % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% % run, let it finish, and you should be clear).
+% \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
